@@ -1,4 +1,18 @@
-# Nuxt 3 Minimal Starter
+# domonell.dev with Nuxt3
+Source code of domonell.dev in Nuxt3
+
+## Issues
+
+Feel free to open new issues.
+
+## Development
+
+This project is using Firebase-admin.
+
+Put the service account information to the firebase project in the root folder with the name "service-account.json".
+You can download the json from the firebase project settings under "Service accounts".
+
+# Nuxt 3
 
 Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
 
