@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#__nuxt {
+    height: 100vh;
+}
+
+.flex-center {
+    @apply h-full flex items-center justify-center
+}
+
+.hightlighted-big-letters {
+    @apply text-p-hightlight text-5xl sm:text-7xl font-bold tracking-tightest
+}
+
+.fading-text {
+    @apply text-p-fade font-serif italic
+}
+
+.normal-text {
+    @apply text-base text-white
+}
+
+.res-mlr-5 {
+    @apply sm:mr-5 sm:ml-5
+}
+
+.res-mlr-10 {
+    @apply sm:mr-10 sm:ml-10
+}
+
+.n-button__content {
+    @apply font-mono
+}
+
+.n-dropdown-menu {
+    @apply w-40
+}
+
+.children_inline-block > * {
+    @apply inline-block
+}
