@@ -1,6 +1,10 @@
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
 export default defineNuxtConfig({
-    ssr: true,
+    // dom not loaded on mounted https://github.com/nuxt/framework/issues/3587
+    app: {
+        pageTransition: false,
+        layoutTransition: false,
+    },
     // Tailwind
     css: ["~/assets/css/main.scss"],
     build: {

@@ -69,6 +69,7 @@
 </template>
 
 <script setup lang="ts">
+import { gsap } from "gsap";
 import { FormInst, useNotification } from 'naive-ui'
 import { NForm, NFormItem, NTooltip, NButton, NInput } from 'naive-ui'
 
@@ -111,6 +112,18 @@ const rules = {
         trigger: ['input']
     },
 };
+
+onMounted(() => {
+    if (process.client) {
+        animate();
+    }
+});
+
+function animate() {
+    gsap.timeline()
+            .from(".ani-contact > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.1, duration: 0.7, delay: 0.3 })
+            .from(".ani-flyin", { y: 100, opacity: 0, stagger: 0.2 }, "-=1.3")
+}
 
 function handleDirectMessage(e: MouseEvent) {
     e.preventDefault();

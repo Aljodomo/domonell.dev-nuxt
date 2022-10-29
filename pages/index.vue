@@ -49,7 +49,32 @@
 </template>
 
 <script setup lang="ts">
+import { gsap } from 'gsap';
+
 const { encode } = useHtmlEncoder();
+
+function animate() {
+    gsap.timeline()
+        .from(".ani-hi > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.07, duration: 0.7, delay: 0.5 })
+        .from(".ani-iam > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.03, duration: 0.7 }, "-=.4")
+        .add("st1", "-=0.8")
+        .from(".ani-job-title > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.07, duration: 0.7 }, "-=.55")
+        .from(".ani-name", { x: 200, opacity: 0 }, "-=.5")
+        .from(".ani-comma", { rotate: -90, opacity: 0 })
+        .fromTo(".ani-name > *",
+            { scale: 0.99 },
+            { scale: 1, stagger: 0.06, duration: 0.4, ease: "back.out(180)" }
+        )
+        .from(".ani-full-job-title", { y: 50, opacity: 0, duration: 0.8 }, "st1")
+        .from(".ani-contact", { y: 50, opacity: 0, duration: 0.8 }, "st1+=0.2");
+}
+
+
+onMounted(() => {
+    animate();
+});
+
+
 </script>
 
 <style scoped>
