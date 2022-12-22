@@ -5,18 +5,20 @@ export default defineNuxtConfig({
         pageTransition: false,
         layoutTransition: false,
     },
+    css: [
+        '~/assets/css/main.scss',
+    ],
     // Tailwind
-    css: ["~/assets/css/main.scss"],
-    build: {
-        // Tailwind
-        postcss: {
-            postcssOptions: {
-                plugins: {
-                    tailwindcss: {},
-                    autoprefixer: {},
-                },
-            },
+    modules: [
+        '@nuxtjs/tailwindcss'
+    ],
+    postcss: {
+        plugins: {
+            tailwindcss: {},
+            autoprefixer: {},
         },
+    },
+    build: {
         // naive-ui
         transpile:
             process.env.NODE_ENV === 'production'
@@ -31,10 +33,10 @@ export default defineNuxtConfig({
     // naive-ui
     vite: {
         optimizeDeps: {
-          include:
-            process.env.NODE_ENV === 'development'
-              ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
-              : []
+            include:
+                process.env.NODE_ENV === 'development'
+                    ? ['naive-ui', 'vueuc', 'date-fns-tz/esm/formatInTimeZone']
+                    : []
         }
-      }
+    }
 })
