@@ -51,6 +51,14 @@
 <script setup lang="ts">
 import { gsap } from 'gsap';
 
+useHead({
+  title: 'Aljoscha Domonell',
+  meta: [{
+    name: 'description',
+    content: 'Aljoscha Domonells personal website'
+  }]
+})
+
 const { encode } = useHtmlEncoder();
 
 function animate() {
