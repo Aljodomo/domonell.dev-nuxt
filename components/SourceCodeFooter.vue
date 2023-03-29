@@ -1,5 +1,5 @@
 <template>
-    <div class="hidden sm:block absolute bottom-5 right-5">
+    <div id="source-code-footer" class="hidden sm:block absolute bottom-5 right-5">
         <NTooltip>
             <template #trigger>
                 <NButton class="mr-2" text style="font-size: 24px" @click="openNewIssue">
@@ -39,3 +39,18 @@ function openNewIssue() {
 }
 
 </script>
+
+<style scoped>
+#source-code-footer {
+    animation: scf-frames 1000ms;
+    animation-fill-mode: backwards;
+}
+
+@keyframes scf-frames {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+}
+
+</style>

@@ -1,47 +1,53 @@
 <template>
-    <div class="h-full p-5">
+    <div class="h-full p-8">
         <div class="h-full flex flex-col justify-between">
-            <div class="fading-text">
-                <div>class Home {</div>
-                <div class="res-mlr-5">public static void main(String args[]){</div>
+            <div>
+                <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">class Home {</div>
+                <div class="res-mlr-5 fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">public static void main(String args[]){</div>
             </div>
-            <div id="welcome-message" class="res-mlr-5">
+            <div id="welcome-message" class="res-mlr-5 mt-4">
                 <div>
-                    <div class="fading-text">System.out.println("</div>
-                    <div class="big-letters sm:ml-5">
-                        <div class="mb-1 children_inline-block ani-hi">
-                            <span v-for="char in encode('Hey,')" v-html="char"></span>
+                    <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">System.out.println("</div>
+                    <div class="big-letters sm:ml-4">
+                        <div class="mb-1 children_inline-block">
+                            <span v-for="char, index in encode('Hey,')" :key="index" v-html="char" class="animate-pop-in-700" :style="{'--animation-index': giveMeMyMsDelay('hi', index)}"></span>
                         </div>
                         <div class="mb-1 children_inline-block">
-                            <span class="children_inline-block ani-iam">
-                                <span v-for="char in encode('ich bin ')" v-html="char"></span>
+                            <span class="children_inline-block">
+                                <span v-for="char, index in encode('ich bin ')" :key="index" v-html="char" class="animate-pop-in-700"  :style="{'--animation-index': giveMeMyMsDelay('iam', index)}"></span>
                             </span>
-                            <span id="name" class="text-p-hightlight children_inline-block ani-name">
-                                <span v-for="char in encode('Aljoscha')" v-html="char"></span>
+                            <span class="bg-gradient-to-r from-p-hightlight-blue text-center to-p-hightlight bg-clip-text text-transparent children_inline-block animate-right-slide-in-500 pb-1 pr-1 pt-1" :style="{'--animation-index': giveMeMyMsDelay('name', 0)}">
+                                <span v-for="char, index in encode('Aljoscha')" :key="index" v-html="char"></span>
                             </span>
-                            <span class="ani-comma">,</span>
+                            <span id="comma" class="inline-block" :style="{'--animation-index': giveMeMyMsDelay('comma', 0)}">,</span>
                         </div>
-                        <div class="children_inline-block ani-job-title">
-                            <span v-for="char in encode('Software Entwickler')" v-html="char"></span>
+                        <div class="children_inline-block">
+                            <span v-for="char, index in encode('Software Entwickler')" :key="index" v-html="char" class="animate-pop-in-500" :style="{'--animation-index': giveMeMyMsDelay('job', index)}"></span>
                         </div>
                     </div>
-                    <div class="fading-text">");</div>
+                    <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">");</div>
                 </div>
-                <div class="ani-full-job-title">
-                    <div class="fading-text">System.out.println("</div>
+                <div class="animate-left-slide-in-800" :style="{'--animation-index': giveMeMyMsDelay('full-job', 0)}">
+                    <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">System.out.println("</div>
                     <div class="w-auto res-mlr-5 text-base md:text-xl text-p-gray font-mono tracking-wider ">Backend / Web Fullstack
                         Entwickler</div>
-                    <div class="fading-text">");</div>
+                    <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">");</div>
                 </div>
-                <div class="mt-5 flex flex-col ani-contact">
-                    <NuxtLink class="res-mlr-5 w-52 self-center sm:self-start big-button" to="/contact">
-                        Kontaktieren
+                <div class="mt-5 flex flex-col animate-left-slide-in-800" :style="{'--animation-index': giveMeMyMsDelay('contact', 0)}">
+                    <NuxtLink class="res-mlr-5 self-center sm:self-start big-button" to="/contact">
+                        <div>Kontaktieren</div>
                     </NuxtLink>
                 </div>
+                <!-- <div class="mt-5">                    
+                    <div class="flex gap-8 border border-p-hightlight rounded-lg justify-start pl-8 pr-8 pt-8 pb-8">
+                        <input v-model="helloMessage" type="text"/>
+                        <Send class="w-6 h-6 text-p-hightlight"></Send>
+                    </div>
+                </div> -->
             </div>
-            <div class="fading-text">
-                <div class="res-mlr-5">}</div>
-                <div>}</div>
+            <div>
+                <div class="res-mlr-5 fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">}</div>
+                <div class="fading-text" :style="{'--animation-index': giveMeMyMsDelay('fade-text', 0)}">}</div>
             </div>
 
         </div>
@@ -49,38 +55,145 @@
 </template>
 
 <script setup lang="ts">
-import { gsap } from 'gsap';
+
+import { Send as Send } from '@vicons/ionicons5';
 
 const { encode } = useHtmlEncoder();
 
-function animate() {
-    gsap.timeline()
-        .from(".ani-hi > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.07, duration: 0.7, delay: 0.5 })
-        .from(".ani-iam > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.03, duration: 0.7 }, "-=.4")
-        .add("st1", "-=0.8")
-        .from(".ani-job-title > *", { scale: 0, opacity: 0, ease: "elastic.out(0.5, 0.2)", stagger: 0.07, duration: 0.7 }, "-=.55")
-        .from(".ani-name", { x: 200, opacity: 0 }, "-=.5")
-        .from(".ani-comma", { rotate: -90, opacity: 0 })
-        .fromTo(".ani-name > *",
-            { scale: 0.99 },
-            { scale: 1, stagger: 0.06, duration: 0.4, ease: "back.out(180)" }
-        )
-        .from(".ani-full-job-title", { y: 50, opacity: 0, duration: 0.8 }, "st1")
-        .from(".ani-contact", { y: 50, opacity: 0, duration: 0.8 }, "st1+=0.2");
-}
+const { giveMeMyMsDelay } = useCssStagger([
+    { key: "hi", elements: 4, stagger: 70, delay: 500 },
+    { key: "iam", elements: 8, stagger: 50, delay: 500 },
+    { key: "job", elements: 19, stagger: 70, delay: 200 },
+    { key: "name", elements: 1, delay: 400 },
+    { key: "comma", elements: 1, delay: 500 },
+    { key: "fade-text", elements: 1, delay: 1000},
+    { key: "full-job", elements: 1, time: 1400 },
+    { key: "contact", elements: 1, time: 1600 }
+]);
 
-
-onMounted(() => {
-    animate();
-});
-
+const helloMessage = ref("");
 
 </script>
 
 <style scoped>
 
+.animate-pop-in-700 {
+    animation: elasticOut 700ms var(--animation-index);
+    animation-fill-mode: backwards;
+}
+.animate-pop-in-500 {
+    animation: elasticOut 500ms var(--animation-index);
+    animation-fill-mode: backwards;
+}
+
+.animate-left-slide-in-800 {
+    animation: slideIn-left 800ms ease-out var(--animation-index);
+    animation-fill-mode: backwards;
+}
+
+.animate-right-slide-in-500 {
+    animation: slidein 500ms var(--animation-index);
+    animation-fill-mode: backwards;
+}
+
+.animate-rotate-in-500 {
+    animation: rotate 500ms var(--animation-index);
+    animation-fill-mode: backwards;
+}
+
+#comma {
+    animation: comma-movement 1000ms ease-in-out var(--animation-index);
+    animation-fill-mode: backwards;
+}
+
+@keyframes comma-movement {
+    0% {
+        transform: translateY(-500px);
+        opacity: 0;
+    }
+    1% {
+        opacity: 1;
+    }
+    70% {
+        transform: rotate(-90deg);
+    }
+    100% {
+        transform: rotate(0);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(-90deg);
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn-left {
+    from {
+        transform: translateX(-200px);
+        opacity: 0;
+    }
+}
+
+@keyframes slideup {
+    from {
+        transform: translateY(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes slidein {
+    from {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+}
+
+@keyframes backout {
+    0% {
+        transform: scale(1);
+    }
+    60% {
+        transform: scale(1.3);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes elasticOut {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    10% {
+        opacity: 1;
+    }
+    20% {
+        transform: scale(1.3);
+    }
+    40% {
+        transform: scale(0.9);
+    }
+    55% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(1.01);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
 .big-button {
-    @apply text-p-hightlight text-base font-mono p-3 border text-center hover:bg-p-hightlight hover:text-black border-p-hightlight transition ease-in-out duration-300
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+    border-image-slice: 1;
+    border: 10px solid;
+    border-width: 2px;
+    border-color: #743ad5;
+    @apply flex justify-center items-center bg-gradient-to-r from-p-hightlight-blue to-p-hightlight text-lg font-mono w-64 h-12 text-center bg-clip-text text-transparent hover:bg-clip-border hover:text-p-dark-black duration-100 drop-shadow-2xl hover:scale-105
 }
 .big-letters {
     @apply text-white font-['Arial'] text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tightest

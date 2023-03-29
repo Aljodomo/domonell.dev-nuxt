@@ -10,7 +10,16 @@
     @apply text-p-hightlight text-5xl sm:text-7xl font-bold tracking-tightest
 }
 
+@keyframes fade-in-e {
+    from {
+        opacity: 0;
+    }
+}
+
 .fading-text {
+    animation: fade-in-e 2000ms var(--animation-index);
+    animation-fill-mode: backwards;
+
     @apply text-p-fade font-serif italic
 }
 
@@ -19,11 +28,11 @@
 }
 
 .res-mlr-5 {
-    @apply sm:mr-5 sm:ml-5
+    @apply sm:mr-4 sm:ml-4
 }
 
 .res-mlr-10 {
-    @apply sm:mr-10 sm:ml-10
+    @apply sm:mr-8 sm:ml-8
 }
 
 .n-button__content {
