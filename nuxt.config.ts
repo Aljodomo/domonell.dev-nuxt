@@ -2,8 +2,8 @@
 export default defineNuxtConfig({
     // dom not loaded on mounted https://github.com/nuxt/framework/issues/3587
     app: {
-        pageTransition: false,
-        layoutTransition: false,
+        pageTransition: true,
+        layoutTransition: true,
     },
     css: [
         '~/assets/css/main.scss',
